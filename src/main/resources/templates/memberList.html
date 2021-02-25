@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>memberlist.html</h2>
+	<table border='1'>
+		<tr>
+			<th>회원번호</th>
+			<th>이메일</th>
+			<th>이름</th>
+			<th>비밀번호</th>
+			<th>상세조회</th>
+			<th>삭제</th>
+		</tr>
+		<tr th:each="member: ${memberList}">
+
+			<td><span th:text="${member.mnumber}"></span></td>
+			<td><a th:onclick="memberView([[${member.memail}]])">
+			[[${member.memail}]]</a></td>
+			<td><span th:text="${member.memail}"></span></td>
+			<td><span th:text="${member.mname}"></span></td>
+			<td><span th:text="${member.mpassword}"></span></td>
+			<td><a th:href="@{'/member/'+${member.memail}}">조회</a></td>
+			<td><button th:onclick="memberDelete([[${member.mnumber}]])">삭제</button>
+		</tr>
+			
+	</table>
+	<div id="memberview"></div>
+</body>
+</html>

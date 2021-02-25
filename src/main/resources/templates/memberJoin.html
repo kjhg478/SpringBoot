@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<!-- 이메일, 비밀번호, 이름만 받는 회원가입 폼 작성 -->
+		<h2>joinform.html</h2>
+	
+	<form action="/member/join" method="post" name="joinform">
+		이메일 : <input type="text" name="memail" id = "memail"> <br>
+		<span id="checkResult"></span><br> 
+		이름 : <input type="text" name="mname" id = "mname"><br>
+		비밀번호 : <input type="password" name="mpassword" id = "mpassword"><br>
+		<input type="reset" value = "다시작성">
+		<input type="submit" value="회원가입"> 
+	</form>
+	<a th:href="@{'/'}">홈으로</a><br> 
+</body>
+</html>
