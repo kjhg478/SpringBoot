@@ -56,4 +56,20 @@ public class MemberService {
 		return memberList;
 	}
 
+	public MemberDTO memberView(String memail) {
+		MemberEntity memberEntity = mr.findByMemail(memail);
+		MemberDTO memberView = MemberDTO.builder()
+										.mnumber(memberEntity.getMnumber())
+										.memail(memberEntity.getMemail())
+										.mpassword(memberEntity.getMpassword())
+										.mname(memberEntity.getMname())
+										.build();
+		return memberView;
+	}
+
+	public String memberDelete(int mnumber) {
+		mr.deleteById(mnumber);
+		return "ok";
+	}
+
 }

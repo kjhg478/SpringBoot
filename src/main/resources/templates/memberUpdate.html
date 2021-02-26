@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+	function memberUpdate() {
+		console.log("함수호출");
+		var updateData = JSON.stringify({
+			mnumber: $("#mnumber").val(),
+			memail: $("#memail").val(),
+			mname: $("#mname").val(),
+			mpassword: $("#mpassword").val()
+		});
+		$.ajax({
+			type: "put",
+			data: updateData,
+			url: "/member/update",
+			contentType: "application/json",
+			success: function() {
+				location.href="/member/"+$("#memail").val();
+			}, error: function() {
+				console.log("수정 오류");
+			}
+		});
+		
+	}
+</script>
+
+</head>
+<body>
+	<h2>memberupdate.html</h2>
+	
+	<form action="/member/update" method="post">
+		<input type="hidden" th:value="${updateView.mnumber}" id="mnumber" name="mnumber"> <br>
+		이메일: <input type="text" th:value="${updateView.memail}" id="memail" name="memail" readonly> <br>
+		이름 : <input type="text" th:value="${updateView.mname}" id="mname" name="mname"><br>
+		<input type="hidden" th:value="${updateView.mpassword}" id="mpassword" name="mpassword">
+		<input type="button" value="수정" th:onclick="memberUpdate()">
+		
+	</form>
+	
+	
+</body>
+</html>
